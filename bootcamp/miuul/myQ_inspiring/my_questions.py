@@ -51,11 +51,5 @@ print('Sorted list is: ', lst)
 
 
 
-"""
-min_index'i argüman olarak değilde list comprehension içerisinde nasıl eşitleyebilirim.
-"""
-
 selection = lambda sequence, start: [i for i in range(2,5)]
 selection([5,10],5)
-
-
