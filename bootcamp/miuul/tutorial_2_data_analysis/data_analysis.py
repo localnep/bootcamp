@@ -468,6 +468,8 @@ df_new = df.loc[(df["age"] > 50) & (df["sex"] == "male") # yaşı 50'den büyük
        & ((df["embark_town"] == "Cherbourg") | (df["embark_town"] == "Southampton")), # yaş , sınıf ve liman bilgilerini getir
        ["age", "class", "embark_town"]]
 
+#df.loc[(df["age"] > 50) & (df["embark_town"].isin(["Southampton", "Cherbourg"])), ["sex", "age", "embark_town"]] (bu şekilde de olur)
+
 df_new
 
 df_new["embark_town"].value_counts() # yeni dataFramedeki limanların sayısını getir
@@ -929,12 +931,6 @@ plt.title("3")
 plt.plot(x, y)
 
 plt.show()
-
-
-
-
-
-
 
 
 
