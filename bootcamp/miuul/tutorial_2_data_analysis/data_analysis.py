@@ -1363,6 +1363,7 @@ def grab_col_names(dataframe, cat_th=10,  car_th=20):
 
     #num_but_cat = [col for col in dataframe.columns if dataframe[col].nunique() < 10 and dataframe[col].dtypes in ["int", "float"]]
     num_but_cat = [col for col in dataframe.columns if dataframe[col].nunique() < 10 and (str(dataframe[col].dtypes).startswith('int' or 'float'))]
+    #int32 ve int64 verileri bir arada bulunmaması için 1.yol
 
     cat_but_car = [col for col in dataframe.columns if dataframe[col].nunique() > 20 and str(dataframe[col].dtypes) in ["category", "object"]]
 
@@ -1428,7 +1429,7 @@ df.info()
 #veri setini hemen okuduktan sonra tip dönüşümünü yapmak daha mantıklı olacaktır
 for col in df.columns:
     if df[col].dtypes == "bool":
-        df[col] = df[col].astype(int)
+        df[col] = df[col].astype(int) #int64 diyerek direkt int32 int64 verilerinin bir arada bulunmaması için 2.yol
 
 cat_cols, num_cols, cat_but_car = grab_col_names(df) # kategorik ve nümerik değişkenleri yakal
 
@@ -1466,7 +1467,7 @@ df = sns.load_dataset("titanic")
 #bool casting -> int
 for col in df.columns:
     if df[col].dtypes == "bool":
-        df[col] = df[col].astype(int)
+        df[col] = df[col].astype(int) #direkt int64 dönüşümü yaparak int32-int64 verilerinin bir arada olmasını engelleyebilirsin
 
 #veri setinin görselleştirilmesi
 def cat_summary(dataframe, col_name, plot=False):
@@ -1510,7 +1511,9 @@ def grab_col_names(dataframe, cat_th=10,  car_th=20):
     # cat_cols, cat_but_car
     cat_cols = [col for col in df.columns if str(df[col].dtypes) in ["category", "object", "bool"]]
 
-    num_but_cat = [col for col in df.columns if df[col].nunique() < 10 and df[col].dtypes in ["int", "float"]]
+    num_but_cat = [col for col in df.columns if df[col].nunique() < 10 and df[col].dtypes in ["int", "float"]] #muhtemelen çalışmayacak alttakini dene
+    #num_but_cat = [col for col in dataframe.columns if dataframe[col].nunique() < 10 and (str(dataframe[col].dtypes).startswith('int' or 'float'))]
+    #int32 ve int64 verileri bir arada bulunmaması için 1.yol
 
     cat_but_car = [col for col in df.columns if
                    df[col].nunique() > 20 and str(df[col].dtypes) in ["category", "object"]]
@@ -1713,6 +1716,12 @@ değişken olduğunu ifade etmek asıl amaç.
 """
 #type(adsa)
 
+"""
+grab_col_names fonksiyonu içerisinde num_but_cat değişkeni tanımlanırken dikkat!
+windows ortamında int32 ve int64 verilerinin bir arada bulunmasına yol açıyor. Buda nümerik değerleri çekerken bazı problemlere yol açabiliyor.
+ilk yol: grab_col_name startswith('int','float') kombinasyonlarını alabilirsin.
+ikinci yol: zaten asıl sıkıntı bool tipindeki verileri int'e çevirirken yaşanıyordu. hem int32 hemde int64 verileri oluyor. direkt int64 astype yapılabilir.
+"""
 
 """
 İlgili bölümü toparlayacak olursak;
