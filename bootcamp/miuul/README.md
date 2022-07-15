@@ -4,4 +4,4 @@
 
 2: tutorial_series: Öğrendiklerim
 
-3: weekly_Reports: Mentörlar ile cevaplanıp paylaşılan dökümanlar ve bize verilen çalışma sorularının çözümleri.
+3: weekly_Reports: Mentörlar ile cevaplanıp paylaşılan içerikler ve bize verilen çalışma sorularının çözümleri.
