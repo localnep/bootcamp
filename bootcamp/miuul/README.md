@@ -4,4 +4,6 @@
 
 2: tutorial_series: Öğrendiklerim
 
-3: weekly_Reports: Mentorlar ile cevaplanan sorular ve bize verilen çalışma sorularının çözümleri.
+3: clean_code_all_tutorial: Öğrendiklerim kısmı çok fazla yorum satırı kullanıyorum. Yorum satırından çok temiz kodlara erişmek istersem bu bölüm
+
+4: weekly_Reports: Mentorlar ile cevaplanan sorular ve bize verilen çalışma sorularının çözümleri.
