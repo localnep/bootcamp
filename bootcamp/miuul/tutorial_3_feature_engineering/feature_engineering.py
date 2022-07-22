@@ -558,7 +558,8 @@ df.describe([0.01, 0.05, 0.75, 0.90, 0.99]).T
 
 df[df_scores < th].index #aykırı değerlerin indeks bilgileri
 
-df[df_scores < th].drop(axis=0, labels=df[df_scores < th].index) # aykırı değerleri silme işlemi (kalıcı değil)
+#df[df_scores < th].drop(axis=0, labels=df[df_scores < th].index) # aykırı değerleri silme işlemi (kalıcı değil) #buranın aşağıdaki satırla değişmesi gerekiyor
+df.drop(axis=0, labels=df[df_scores < th].index)
 
 """
 silme işlemini gerçekleştirdik. Baskılama yöntemiyle de yapabilirdik. Fakat 3 gözlem olduğundan dolayı silmeyi tercih ettik.
